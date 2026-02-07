@@ -15,11 +15,19 @@ header{padding:40px 20px}
 .day{background:white;border-radius:18px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
 .locked{opacity:.6}
 .card-wrap{perspective:1000px}
-.card{width:100%;max-width:320px;height:220px;margin:15px auto;position:relative;transform-style:preserve-3d;transition:transform .8s;border-radius:16px;cursor:pointer}
+.card{width:100%;max-width:320px;min-height:220px;margin:15px auto;position:relative;transform-style:preserve-3d;transition:transform .8s;border-radius:16px;cursor:pointer;height: auto;}
 .card.flip{transform:rotateY(180deg)}
 .face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;overflow:hidden}
 .front img{width:100%;height:100%;object-fit:cover}
-.back{background:#ffe6f0;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;padding:18px;font-family:'Playfair Display',serif}
+.back {
+  background:#ffe6f0;
+  transform:rotateY(180deg);
+  padding:18px;
+  font-family:'Playfair Display',serif;
+  font-size:15px;
+  line-height:1.5;
+  overflow-wrap:break-word;
+}
 .qna{background:rgba(255,255,255,.95);padding:20px;border-radius:16px;max-width:280px;margin:15px auto}
 .qna input{width:90%;padding:10px;border-radius:10px;border:1px solid #ccc;font-size:15px}
 .qna button{margin-top:10px;padding:8px 16px;border:none;border-radius:18px;background:#ff4d6d;color:white}
@@ -39,25 +47,25 @@ footer{padding:40px;font-size:14px;color:#777}
 <section id="days" class="days hidden"></section>
 <footer id="signature" class="hidden">— From Aksss 💗</footer>
 <script>
-const startDate=new Date('2026-02-07');
+const startDate = new Date(); startDate.setHours(0,0,0,0); startDate.setDate(startDate.getDate() - (startDate.getDate() >= 7 ? (startDate.getDate() - 7) : 0));
 const today=new Date();
 const data=[
-{day:'Feb 7',title:'Why You ❤️',img:'why_you.jpeg',note:'This picture, this day never thought it would turn into this',extraImg:'one.jpeg',q:'Nickname I call you?',a:'ads'},
-{day:'Feb 8',title:'Comfort 🏠',img:'comfort.jpeg',note:'With you, everything feels like home.',extraImg:'comfortone.jpeg',q:'Our fav first song?',a:'rehna kol'},
-{day:'Feb 9',title:'Work 👩‍💻',img:'work.jpeg',note:'We build dreams together, step by step.',extraImg:'work_extra.jpeg',q:'The first complete project we worked on?',a:'cicdct'},
-{day:'Feb 10',title:'Strength 💪',img:'gym.jpeg',note:'Your strength motivates me to be better.',extraImg:'gym_extra.jpeg',q:'Which gym do I go to?',a:'sweat arena'},
-{day:'Feb 11',title:'Passion 🏏',img:'cricket.jpeg',note:'Your passion is contagious and inspiring.',extraImg:'cricket_extra.jpeg',q:'Popular nickname of Rohit Sharma?',a:'hitman'},
-{day:'Feb 12',title:'Us 💑',img:'us.jpeg',note:'Us is my favourite thing to be.',extraImg:'us_extra.jpeg',q:'Which month did we fall in love with?',a:'feb'},
-{day:'Feb 13',title:'Trips ✈️',img:'trip.jpeg',note:'Every trip with you becomes a memory.',extraImg:'trip_extra.jpeg',q:'What was our romantic trip so far?',a:'belaj'},
-{day:'Feb 14',title:'Valentine ❤️',img:'fav.jpeg',note:'I choose you. Today and always.',extraImg:'favone.jpeg',q:'Do you love me?',a:'yes'}
+{day:'Feb 7',title:'Why You ❤️',img:'why_you.jpeg',note:'This picture, this day never thought it would turn into this. Never thought I would fall for you so hard.You are a blessing in disguise.Thanks for being you and for accepting me as it is.If I had to make this choices again, If I had to make this choice again, I would still choose you and bring you into my life over and over again,no matter how long it might be.',extraImg:'one.jpeg',q:'Nickname I call you?',a:'ads'},
+{day:'Feb 8',title:'Comfort 🏠',img:'comfort.jpeg',note:'With you, everything feels like home.Thank you for always welcoming me with open arms and no judgments.No matter where we are — Manjri or anywhere in the world — you will always be my second home.',extraImg:'comfortone.jpeg',q:'Our fav first song?',a:'rehna kol'},
+{day:'Feb 9',title:'Work 👩‍💻',img:'work.jpeg',note:'For me you were just a new guy coming from the "App" Team and is just coping with all the new things. But 1 project CICDCT changed our work dynamics and i loved it. It brought me closer to you, it gave me the trust i needed to develop in you. You were and always will be the partner i will want at my workspace. Really miss you now that you are gone. I hope one day, we meet each other again as colleagues. Thank you for giving me an amazing year at work, helping me cope up with insane people, gossip around and teach me hundreds of things.',extraImg:'work_extra.jpeg',q:'The first complete project we worked on?',a:'cicdct'},
+{day:'Feb 10',title:'Gym 💪',img:'gym.jpeg',note:'Your routine is god-level, Ads.You pushed me harder, but always in the right way,helping me become better.Thank you for always wanting the best for me and helping me through it all.',extraImg:'gym_extra.jpeg',q:'Which gym do I go to?',a:'sweat arena'},
+{day:'Feb 11',title:'Passion 🏏',img:'cricket.jpeg',note:'Your passion is contagious and truly inspiring.Somehow, you’ve even made me start liking cricket.Your love for it is on another level.I hope that one day all your dreams come true, that you get to meet your love, your God, and that this passion of yours never fades.',extraImg:'cricket_extra.jpeg',q:'Popular nickname of Rohit Sharma?',a:'hitman'},
+{day:'Feb 12',title:'Us 💑',img:'us.jpeg',note:'Us is my favorite thing to be. A year that feels like a lifetime.Thank you for loving me, caring for me,giving me butterflies,and for being honest with me —even when it wasn’t easy. Us is what is helping me move forward in life. I love Us.',extraImg:'us_extra.jpeg',q:'Which month did we fall in love with?',a:'feb'},
+{day:'Feb 13',title:'Trips ✈️',img:'trip.jpeg',note:'Trips with you aren’t about places,they’re about moments.Every journey with you feels lighter, happier, fuller.No matter where we go next,I know it’ll feel right — as long as it’s with you.',extraImg:'trip_extra.jpeg',q:'What was our romantic trip so far?',a:'belaj'},
+{day:'Feb 14',title:'Valentine ❤️',img:'fav.jpeg',note:'Loving you wasn’t planned,but choosing you is.Every day.Thank you for being my safe place,my excitement, my calm, my chaos.Happy Valentine’s Day to the one my heart always finds its way back to.',extraImg:'favone.jpeg',q:'Do you love me?',a:'yes'}
 ];
 function openGift(){document.getElementById('days').classList.remove('hidden');document.getElementById('line').classList.remove('hidden');document.getElementById('signature').classList.remove('hidden');document.getElementById('bgm').play();renderDays();}
 function renderDays(){const c=document.getElementById('days');c.innerHTML='';data.forEach((d,i)=>{const date=new Date(startDate);date.setDate(startDate.getDate()+i);const unlocked=today>=date;const el=document.createElement('div');el.className='day'+(unlocked?'':' locked');el.innerHTML=`<h3>${d.day} — ${d.title}</h3>${unlocked?`<div class='qna'><p>${d.q}</p><input id='ans${i}' placeholder='Your answer'/><button onclick='check(${i})'>Unlock 💌</button></div><div class='card-wrap hidden' id='card${i}'>
-  <div class='card' onclick='this.classList.toggle("flip")'>
-    <div class='face front'><img src='${d.img}'></div>
-    <div class='face back'>${d.note}</div>
-  </div>
-  ${d.extraImg?`<img src='${d.extraImg}' style='width:100%;max-width:320px;border-radius:14px;margin-top:12px'/>`:''}
+<div class='card' onclick='this.classList.toggle("flip")'>
+<div class='face front'><img src='${d.img}'></div>
+<div class='face back'>${d.note}</div>
+</div>
+${d.extraImg?`<img src='${d.extraImg}' style='width:100%;max-width:320px;border-radius:14px;margin-top:12px'/>`:''}
 </div>`:`<p>Not yet 💌</p>`}`;c.appendChild(el);});}
 function check(i){const v=document.getElementById('ans'+i).value.toLowerCase().trim();if(v===data[i].a){document.getElementById('card'+i).classList.remove('hidden');event.target.parentElement.classList.add('hidden');}else{alert(i===data.length-1?'No 😌 Try again':'That’s not it 💔 Try again');}}
 </script>
