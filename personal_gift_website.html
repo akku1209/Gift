@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>7 Days of Us ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Poppins,sans-serif;background:#fff0f5;color:#333;text-align:center}
+header{padding:40px 20px}
+.gift{font-size:80px;cursor:pointer;animation:bounce 1.5s infinite}
+@keyframes bounce{50%{transform:translateY(-10px)}}
+.hidden{display:none}
+.days{display:grid;grid-template-columns:1fr;gap:20px;padding:20px}
+.day{background:white;border-radius:18px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
+.locked{opacity:.6}
+.card-wrap{perspective:1000px}
+.card{width:100%;max-width:320px;height:220px;margin:15px auto;position:relative;transform-style:preserve-3d;transition:transform .8s;border-radius:16px;cursor:pointer}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;overflow:hidden}
+.front img{width:100%;height:100%;object-fit:cover}
+.back{background:#ffe6f0;transform:rotateY(180deg);display:flex;align-items:center;justify-content:center;padding:18px;font-family:'Playfair Display',serif}
+.qna{background:rgba(255,255,255,.95);padding:20px;border-radius:16px;max-width:280px;margin:15px auto}
+.qna input{width:90%;padding:10px;border-radius:10px;border:1px solid #ccc;font-size:15px}
+.qna button{margin-top:10px;padding:8px 16px;border:none;border-radius:18px;background:#ff4d6d;color:white}
+footer{padding:40px;font-size:14px;color:#777}
+</style>
+</head>
+<body>
+<audio id="bgm" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_6b6c1f5f3b.mp3" type="audio/mpeg">
+</audio>
+<header>
+<h1>7 Days of Us ❤️</h1>
+<p>Tap the gift to begin</p>
+<div class="gift" onclick="openGift()">🎁</div>
+<p id="line" class="hidden">Made with love for my love 💌</p>
+</header>
+<section id="days" class="days hidden"></section>
+<footer id="signature" class="hidden">— From Aksss 💗</footer>
+<script>
+const startDate=new Date('2026-02-07');
+const today=new Date();
+const data=[
+{day:'Feb 7',title:'Why You ❤️',img:'why_you.jpeg',note:'You are my fresh beginning, every single day.',extraImg:'one.jpeg',q:'Nickname I call you?',a:'ads'},
+{day:'Feb 8',title:'Comfort 🏠',img:'comfort.jpeg',note:'With you, everything feels like home.',extraImg:'comfortone.jpeg',q:'Our fav first song?',a:'rehna kol'},
+{day:'Feb 9',title:'Work 👩‍💻',img:'work.jpeg',note:'We build dreams together, step by step.',extraImg:'work_extra.jpeg',q:'The first complete project we worked on?',a:'cicdct'},
+{day:'Feb 10',title:'Strength 💪',img:'gym.jpeg',note:'Your strength motivates me to be better.',extraImg:'gym_extra.jpeg',q:'Which gym do I go to?',a:'sweat arena'},
+{day:'Feb 11',title:'Passion 🏏',img:'cricket.jpeg',note:'Your passion is contagious and inspiring.',extraImg:'cricket_extra.jpeg',q:'Popular nickname of Rohit Sharma?',a:'hitman'},
+{day:'Feb 12',title:'Us 💑',img:'us.jpeg',note:'Us is my favourite thing to be.',extraImg:'us_extra.jpeg',q:'Which month did we fall in love with?',a:'feb'},
+{day:'Feb 13',title:'Trips ✈️',img:'trip.jpeg',note:'Every trip with you becomes a memory.',extraImg:'trip_extra.jpeg',q:'What was our romantic trip so far?',a:'belaj'},
+{day:'Feb 14',title:'Valentine ❤️',img:'fav.jpeg',note:'I choose you. Today and always.',extraImg:'favone.jpeg',q:'Do you love me?',a:'yes'}
+];
+function openGift(){document.getElementById('days').classList.remove('hidden');document.getElementById('line').classList.remove('hidden');document.getElementById('signature').classList.remove('hidden');document.getElementById('bgm').play();renderDays();}
+function renderDays(){const c=document.getElementById('days');c.innerHTML='';data.forEach((d,i)=>{const date=new Date(startDate);date.setDate(startDate.getDate()+i);const unlocked=today>=date;const el=document.createElement('div');el.className='day'+(unlocked?'':' locked');el.innerHTML=`<h3>${d.day} — ${d.title}</h3>${unlocked?`<div class='qna'><p>${d.q}</p><input id='ans${i}' placeholder='Your answer'/><button onclick='check(${i})'>Unlock 💌</button></div><div class='card-wrap hidden' id='card${i}'>
+  <div class='card' onclick='this.classList.toggle("flip")'>
+    <div class='face front'><img src='${d.img}'></div>
+    <div class='face back'>${d.note}</div>
+  </div>
+  ${d.extraImg?`<img src='${d.extraImg}' style='width:100%;max-width:320px;border-radius:14px;margin-top:12px'/>`:''}
+</div>`:`<p>Not yet 💌</p>`}`;c.appendChild(el);});}
+function check(i){const v=document.getElementById('ans'+i).value.toLowerCase().trim();if(v===data[i].a){document.getElementById('card'+i).classList.remove('hidden');event.target.parentElement.classList.add('hidden');}else{alert(i===data.length-1?'No 😌 Try again':'That’s not it 💔 Try again');}}
+</script>
+</body>
+</html>
