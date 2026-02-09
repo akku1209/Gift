@@ -15,10 +15,28 @@ header{padding:40px 20px}
 .day{background:white;border-radius:18px;padding:20px;box-shadow:0 10px 25px rgba(0,0,0,.12)}
 .locked{opacity:.6}
 .card-wrap{perspective:1000px}
-.card{width:100%;max-width:320px;min-height:220px;margin:15px auto;position:relative;transform-style:preserve-3d;transition:transform .8s;border-radius:16px;cursor:pointer;height: auto;}
+.card {
+  width:100%;
+  max-width:320px;
+  min-height:220px;
+  max-height:260px;
+  height:auto;
+  margin:15px auto;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .8s;
+  border-radius:16px;
+  cursor:pointer;
+}
 .card.flip{transform:rotateY(180deg)}
 .face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;overflow:hidden}
-.front img{width:100%;height:100%;object-fit:cover}
+.front img {
+  width:100%;
+  height:auto;
+  max-height:220px;
+  object-fit:contain;
+  background:#000;
+}
 .back {
   background:#ffe6f0;
   transform:rotateY(180deg);
