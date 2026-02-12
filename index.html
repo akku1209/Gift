@@ -50,6 +50,32 @@ header{padding:40px 20px}
 .qna input{width:90%;padding:10px;border-radius:10px;border:1px solid #ccc;font-size:15px}
 .qna button{margin-top:10px;padding:8px 16px;border:none;border-radius:18px;background:#ff4d6d;color:white}
 footer{padding:40px;font-size:14px;color:#777}
+  .timeline-section{padding:10px 0 30px}
+.timeline-scroll{
+display:flex;
+overflow-x:auto;
+gap:14px;
+padding:15px;
+scroll-snap-type:x mandatory;
+}
+.timeline-scroll img{
+height:140px;
+border-radius:16px;
+flex-shrink:0;
+scroll-snap-align:center;
+box-shadow:0 8px 18px rgba(0,0,0,0.15);
+transition:transform .3s ease;
+}
+.timeline-scroll img:active{
+transform:scale(1.08);
+}
+.timeline-scroll::-webkit-scrollbar{
+height:6px;
+}
+.timeline-scroll::-webkit-scrollbar-thumb{
+background:#ffb6c1;
+border-radius:10px;
+}
 </style>
 </head>
 <body>
@@ -102,7 +128,14 @@ const data=[
 {day:'Feb 13',title:'Trips ✈️',img:'trip.jpeg',note:'Trips with you aren’t about places,they’re about moments.Every journey with you feels lighter, happier, fuller.Panshet, Diveagar and Belaj -limited trips but amazing and romantic ones I have had yet.No matter where we go next,I know it’ll feel right — as long as it’s with you.',extraImg:'tripone.jpeg',q:'What was our romantic trip so far?',a:'belaj'},
 {day:'Feb 14',title:'Valentine ❤️',img:'fav.jpeg',note:'Loving you wasn’t planned,but choosing you is.Every day.Thank you for being my safe place,my excitement, my calm, my chaos.I am, and always will be, praying for your success,your happiness, and your love —whether I am around or not.Happy Valentine’s Day to the one my heart always finds its way back to.I love you Ads. ❤️',extraImg:'favone.jpeg',q:'Do you love me?',a:'yes'}
 ];
-function openGift(){document.getElementById('days').classList.remove('hidden');document.getElementById('line').classList.remove('hidden');document.getElementById('signature').classList.remove('hidden');document.getElementById('bgm').play();renderDays();}
+function openGift(){
+document.getElementById('days').classList.remove('hidden');
+document.getElementById('line').classList.remove('hidden');
+document.getElementById('signature').classList.remove('hidden');
+document.getElementById('timeline').classList.remove('hidden');
+document.getElementById('bgm').play();
+renderDays();
+}
 function renderDays(){const c=document.getElementById('days');c.innerHTML='';data.forEach((d,i)=>{const date=new Date(startDate);date.setDate(startDate.getDate()+i);const unlocked=today>=date;const el=document.createElement('div');el.className='day'+(unlocked?'':' locked');el.innerHTML=`<h3>${d.day} — ${d.title}</h3>${unlocked?`<div class='qna'><p>${d.q}</p><input id='ans${i}' placeholder='Your answer'/><button onclick='check(${i})'>Unlock 💌</button></div><div class='card-wrap hidden' id='card${i}'>
 <div class='card' onclick='this.classList.toggle("flip")'>
 <div class='face front'><img src='${d.img}'></div>
@@ -112,7 +145,8 @@ ${d.extraImg?`<img src='${d.extraImg}' style='width:100%;max-width:320px;border-
 </div>`:`<p>Not yet 💌</p>`}`;c.appendChild(el);});}
 function check(i){const v=document.getElementById('ans'+i).value.toLowerCase().trim();if(v===data[i].a){document.getElementById('card'+i).classList.remove('hidden');event.target.parentElement.classList.add('hidden');}else{alert(i===data.length-1?'No 😌 Try again':'That’s not it 💔 Try again');}}
 </script>
-  <div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+<!-- Image Lightbox Modal -->
+<div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
 <img id="lightbox-img" src="" />
 </div>
 
